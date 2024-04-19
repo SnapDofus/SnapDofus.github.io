@@ -79,6 +79,7 @@ async function handleSubmit(event) {
                 icon: 'success',
                 title: 'Message envoyé avec succès !',
                 text: 'Merci pour votre soumission.',
+                confirmButtonColor: '#0ef',
             });
             form.reset();
         } else {
@@ -86,6 +87,7 @@ async function handleSubmit(event) {
                 icon: 'error',
                 title: 'Oops...',
                 text: 'Une erreur s\'est produite lors de l\'envoi du formulaire. Veuillez réessayer.',
+                confirmButtonColor: '#0ef',
             });
         }
     } catch (error) {
@@ -93,6 +95,7 @@ async function handleSubmit(event) {
             icon: 'error',
             title: 'Oops...',
             text: 'Une erreur s\'est produite lors de l\'envoi du formulaire. Veuillez réessayer.',
+            confirmButtonColor: '#0ef',
         });
     }
 }
