@@ -7,7 +7,6 @@ menuIcon.onclick = () =>{
     menuIcon.classList.toggle('active');
 }
 
-
 /*==================== scroll sections active link ====================*/
 let sections = document.querySelectorAll('section');
 let navLinks = document.querySelectorAll('header nav a');
@@ -59,3 +58,42 @@ const typed = new Typed('.multiple-text', {
     backDelay: 1000,
     loop: true
 });
+
+var form = document.getElementById("my-form");
+
+async function handleSubmit(event) {
+    event.preventDefault();
+    var data = new FormData(event.target);
+
+    try {
+        const response = await fetch(event.target.action, {
+            method: form.method,
+            body: data,
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
+
+        if (response.ok) {
+            await Swal.fire({
+                icon: 'success',
+                title: 'Message envoyé avec succès !',
+                text: 'Merci pour votre soumission.',
+            });
+            form.reset();
+        } else {
+            await Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Une erreur s\'est produite lors de l\'envoi du formulaire. Veuillez réessayer.',
+            });
+        }
+    } catch (error) {
+        await Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Une erreur s\'est produite lors de l\'envoi du formulaire. Veuillez réessayer.',
+        });
+    }
+}
+form.addEventListener("submit", handleSubmit);

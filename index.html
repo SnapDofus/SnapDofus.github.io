@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mon Portfolio</title>
+	<link rel="shortcut icon" href="logo.png" type="image/x-icon">
 
     <!-- box icons -->
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
@@ -34,15 +35,14 @@
         <h3>Salut, Moi c'est</h3>
         <h1>Frédéric KOKOU ESSONE</h1>
         <h3>Et je suis un <span class="multiple-text"></span></h3>
-        <p>Ayant obtenu ma licence en ingénierie informatique réseau & télécom, je suis à la recherche
-          d'un poste en développement pour pouvoir parfaire ma formation.</p>
+        <p>Diplômé en ingénierie informatique réseau & télécom, je suis actuellement à la recherche de nouvelles opportunités professionnelles dans le domaine du développement pour continuer à enrichir mes compétences.</p>
           <div class="social-media">
             <a href="#"><i class='bx bxl-facebook' ></i></a>
             <a href="#"><i class='bx bxl-twitter' ></i></a>
             <a href="#"><i class='bx bxl-instagram' ></i></a>
             <a href="#"><i class='bx bxl-linkedin' ></i></a>
           </div>
-          <a href="#" class="btn">Télécharger mon CV</a>
+          <a href="CV_Frederic_KOKOU ESSONE.pdf" download="CV_Frederic_KOKOU ESSONE.pdf" class="btn">Télécharger mon CV</a>
       </div>
       <div class="home-img">
         <img src="home3.png" alt="" class="">
@@ -96,9 +96,8 @@
           <i class='bx bxs-paint' ></i>
           <h3>Graphic Design UI/UX</h3>
           <p>
-          Lorsque je ne suis pas en train de coder, vous pouvez me trouver en train de découvrir de nouveaux endroits, 
-          de m'adonner au basketball ou de me plonger dans un bon manga.
-         </p>
+            Étant donné que je suis un développeur web Fullstack, j'ai acquis une solide compréhension des besoins techniques et des attentes des utilisateurs, ce qui me permet de concevoir des interfaces UI/UX efficaces et conviviales, utilisant des outils comme Figma pour donner vie à mes idées.
+          </p>
          <a href="#" class="btn">Lire Plus</a>
         </div>
 
@@ -106,9 +105,7 @@
           <i class='bx bx-devices' ></i>
           <h3>Dévéloppement Mobile</h3>
           <p>
-          J'aime aussi partager mes connaissances 
-          avec d'autres passionnés de technologie et de développement. N'hésitez pas à me contacter si vous 
-          souhaitez discuter de projets, d'opportunités de collaboration ou simplement échanger des idées.
+            En utilisant Flutter comme pilier de mon expertise en développement mobile, je crée des applications réactives et élégantes, offrant une expérience utilisateur immersive et engageante sur chaque appareil.
           </p>
         <a href="#" class="btn">Lire Plus</a>
         </div>
@@ -123,9 +120,9 @@
         <div class="portfolio-box">
           <img src="portfolio1.jpg" alt="">
           <div class="portfolio-layer">
-            <h4>Web Design</h4>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nesciunt, modi.</p>
-            <a href="#"><i class='bx bx-link-external' ></i></a>
+            <h4>Design Ui/UX</h4>
+            <p>Application mobile de commerce électronique (Marketplace) développée avec Flutter, offrant une expérience utilisateur immersive et intuitive.</p>
+            <a href="https://www.figma.com/proto/JQwelCeUUKIJnfY5qvD4RT/Distributeur2.0?page-id=0%3A1&type=design&node-id=5-59&viewport=509%2C612%2C0.1&t=3HRhGERDiOKzceK0-1&scaling=scale-down&starting-point-node-id=171%3A174&mode=design"><i class='bx bx-link-external' ></i></a>
           </div>
         </div>
 
@@ -133,8 +130,8 @@
           <img src="portfolio2.jpg" alt="">
           <div class="portfolio-layer">
             <h4>Web Design</h4>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nesciunt, modi.</p>
-            <a href="#"><i class='bx bx-link-external' ></i></a>
+            <p>Refonte du site de la DGS réalisée lors du Stackhackton organisé au sein de la SING, mettant en œuvre les dernières technologies pour offrir une expérience utilisateur améliorée.</p>
+            <a href="https://www.figma.com/proto/f8zvOU4b0z9rq2K9I8KrjL/Site-web-de-la-DGS?page-id=0%3A1&type=design&node-id=166-4564&viewport=-100%2C731%2C0.05&t=aIfjpvrmmmvhnfiV-1&scaling=scale-down-width&starting-point-node-id=166%3A4564&mode=design"><i class='bx bx-link-external' ></i></a>
           </div>
         </div>
 
@@ -142,7 +139,7 @@
           <img src="portfolio3.jpg" alt="">
           <div class="portfolio-layer">
             <h4>Web Design</h4>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nesciunt, modi.</p>
+            <p>Site web de la société Hiram Communication conçu pour répondre aux besoins spécifiques de l'entreprise, offrant une interface conviviale.</p>
             <a href="#"><i class='bx bx-link-external' ></i></a>
           </div>
         </div>
@@ -179,22 +176,21 @@
 
     <!-- contact section design -->
     <section class="contact" id="contact">
-      <h2 class="heading">Contact <span>Me!</span></h2>
-      <form action="#">
+      <h2 class="heading">Contact <span>Moi</span></h2>
+      <form id="my-form" action="https://formspree.io/f/moqgyekv" method="POST">
         <div class="input-box">
-          <input type="text" placeholder="Nom Complet">
-          <input type="email" placeholder="Addresse Email">
+            <input type="text" name="nom" placeholder="Nom Complet" required>
+            <input type="email" name="email" placeholder="Addresse Email" required>
         </div>
-
+    
         <div class="input-box">
-          <input type="number" placeholder="Numéro de Téléphone">
-          <input type="text" placeholder="Sujet de l'email">
+            <input type="tel" name="telephone" placeholder="Numéro de Téléphone">
+            <input type="text" name="sujet" placeholder="Sujet de l'email">
         </div>
-
-        <textarea name="" id="" cols="30" rows="10" placeholder="Votre Message"></textarea>
+    
+        <textarea name="message" cols="30" rows="10" placeholder="Votre Message" required></textarea>
         <input type="submit" value="Envoyer" class="btn">
-        
-      </form>
+    </form>
     </section>
 
     <!-- footer design -->
@@ -214,6 +210,7 @@
 
     <!-- typed js -->
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- custom js -->
     <script src="script.js"></script>
