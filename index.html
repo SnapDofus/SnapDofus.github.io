@@ -1,301 +1,556 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
   <head>
+    <!-- Encodage & responsive -->
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mon Portfolio</title>
-    <link rel="shortcut icon" href="logo.png" type="image/x-icon" />
 
-    <!-- box icons -->
-    <link
-      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
-      rel="stylesheet"
+    <!-- Titre principal de la page -->
+    <title>Frédéric KOKOU ESSONE – Développeur Fullstack</title>
+
+    <!-- Description pour le référencement -->
+    <meta
+      name="description"
+      content="Portfolio de Frédéric KOKOU ESSONE, développeur fullstack spécialisé en Flutter, Laravel et UI/UX design. Découvrez mes projets récents et mes compétences."
     />
 
-    <!-- custom css -->
+    <!-- Mots-clés optionnels (peu utilisés mais pas nuisibles) -->
+    <meta
+      name="keywords"
+      content="Frédéric KOKOU ESSONE, développeur, fullstack, Flutter, Laravel, UI/UX, portfolio, Gabon"
+    />
+
+    <!-- Auteur -->
+    <meta name="author" content="Frédéric KOKOU ESSONE" />
+
+    <!-- Open Graph (Facebook / LinkedIn / etc.) -->
+    <meta
+      property="og:title"
+      content="Frédéric KOKOU ESSONE – Développeur Fullstack"
+    />
+    <meta
+      property="og:description"
+      content="Découvrez mes projets récents en développement web & mobile et mon expertise en UI/UX."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://snapdofus.github.io/" />
+    <!-- image d’aperçu (adapter le chemin/nom de fichier) -->
+    <meta
+      property="og:image"
+      content="https://snapdofus.github.io/preview.jpg"
+    />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Frédéric KOKOU ESSONE – Développeur Fullstack"
+    />
+    <meta
+      name="twitter:description"
+      content="Portfolio et projets récents en Flutter, Laravel et UI/UX design."
+    />
+    <meta
+      name="twitter:image"
+      content="https://snapdofus.github.io/preview.jpg"
+    />
+
+    <!-- Favicon -->
+    <link rel="icon" href="logo.png" type="image/x-icon" />
+
+    <!-- Feuille de style principale -->
     <link rel="stylesheet" href="style.css" />
+
+    <!-- Police Google (exemple) -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
   </head>
 
   <body>
-    <!-- header design -->
-    <header class="header">
-      <a href="#" class="logo">Portfolio</a>
-      <i class="bx bx-menu" id="menu-icon"></i>
-      <nav class="navbar">
-        <a href="#home" class="active">Acceuil</a>
-        <a href="#about">À-propos</a>
-        <a href="#skills">Skills</a>
-        <a href="#portfolio">Portfolio</a>
-        <a href="#contact">Contact</a>
+      <!-- Loader -->
+       <div id="loader" class="loader">
+        <canvas id="particleCanvas"></canvas>
+        
+        <!-- Hexagones flottants -->
+        <div class="hex-container" id="hexContainer"></div>
+        
+        <!-- Code Matrix -->
+        <div class="code-matrix" id="codeMatrix"></div>
+        
+        <div class="loader-content">
+            <div class="code-logo">
+                <div class="code-brackets bracket-left">&lt;</div>
+                <div class="code-brackets bracket-right">/&gt;</div>
+            </div>
+            <div class="loader-text" data-text="LOADING">LOADING</div>
+            <div class="loading-percentage" id="percentage">0%</div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+      <div class="logo">Frédéric K. ESSONE</div>
+      <nav>
+        <a href="#services">Compétences</a>
+        <a href="#work">Processus</a>
+        <a href="#about">À Propos</a>
+        <a href="#products">Projets</a>
+        <a href="#products">Portfolio</a>
+        <button class="contact-btn">Contacter moi</button>
       </nav>
+      <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
     </header>
 
-    <!-- home section design -->
-
-    <section class="home" id="home">
-      <div class="home-content">
-        <h3>Salut, Moi c'est</h3>
-        <h1>Frédéric KOKOU ESSONE</h1>
-        <h3>Et je suis un <span class="multiple-text"></span></h3>
-        <p>
-          Diplômé en ingénierie informatique réseau & télécom, je suis
-          actuellement à la recherche de nouvelles opportunités professionnelles
-          dans le domaine du développement pour continuer à enrichir mes
-          compétences.
-        </p>
-        <div class="social-media">
-          <a href="#"><i class="bx bxl-facebook"></i></a>
-          <a href="#"><i class="bx bxl-twitter"></i></a>
-          <a href="#"><i class="bx bxl-instagram"></i></a>
-          <a href="#"><i class="bx bxl-linkedin"></i></a>
-        </div>
+    <div id="whatsapp-popup" class="whatsapp-popup">
+      <div class="whatsapp-content">
+        <span class="close-popup">&times;</span>
+        <h3>Me contacter sur WhatsApp</h3>
+        <p>Clique sur le bouton ci-dessous pour démarrer la conversation :</p>
         <a
-          href="CV_Frederic_KOKOU ESSONE.pdf"
-          download="CV_Frederic_KOKOU ESSONE.pdf"
-          class="btn"
-          >Télécharger mon CV</a
+          href="https://wa.me/24162911886"
+          target="_blank"
+          class="whatsapp-link"
         >
+          💬 Ouvrir WhatsApp
+        </a>
       </div>
-      <div class="home-img">
-        <img src="home3.png" alt="" class="" />
-      </div>
-    </section>
+    </div>
 
-    <!-- about section design -->
-    <section class="about" id="about">
-      <div class="about-img">
-        <img src="about2.png" alt="" />
-      </div>
-      <div class="about-content">
-        <h2 class="heading">À-propos de <span>Moi</span></h2>
-        <h3>Développeur Front-end</h3>
-        <p>
-          "Bonjour ! Je suis Frédéric KOKOU ESSONE, un passionné de la
-          technologie et un développeur frontend. J'ai obtenu ma licence en
-          ingénierie informatique réseau et télécom, et depuis lors, je suis
-          plongé dans le monde fascinant du développement web. Mon parcours
-          académique m'a fourni une base solide en informatique, tandis que ma
-          curiosité innée m'a poussé à explorer constamment de nouvelles
-          technologies et à affiner mes compétences en conception et
-          développement frontend. Je suis passionné par la création de sites web
-          élégants et fonctionnels qui offrent une expérience utilisateur
-          exceptionnelle. Mon objectif est de transformer des idées en réalité
-          grâce à une combinaison de code propre, de design moderne et
-          d'innovation technologique. Merci de visiter mon portfolio, et
-          j'espère avoir l'occasion de travailler ensemble pour créer quelque
-          chose d'exceptionnel !"
-        </p>
-        <a href="#" class="btn">Lire Plus</a>
-      </div>
-    </section>
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav" id="mobileNav">
+      <a href="#services">Compétences</a>
+      <a href="#work">Processus</a>
+      <a href="#about">À Propos</a>
+      <a href="#products">Projets</a>
+      <a href="#products">Portfolio</a>
+      <a href="#contact">Me Contacter</a>
+    </div>
 
-    <!-- skills section design -->
-    <section class="skills" id="skills">
-      <h2 class="heading">Mes <span>compétences</span></h2>
+    <!-- Hero Section -->
+    <div class="hero-container">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <div class="star star-1">✦</div>
+          <div class="star star-2">★</div>
 
+          <h1>
+            <span class="title-line with-badge"> Développeur </span>
+            <span class="title-line test">
+              Fullstack
+            </span>
+
+            <span class="title-line lara">Laravel/flutter
+                <a
+                href="CV_Frederic_KOKOU ESSONE.pdf"
+                target="_blank"
+                download
+                class="interactive-badge"
+              >
+                <div class="arrow-container">
+                  <span class="arrow-icon"> CV </span>
+                </div>
+                <div class="profile-pic"></div>
+              </a>
+              <div class="wavy-line">
+                <svg>
+                  <path d="M0,20 Q30,10 60,20 T120,20" />
+                </svg>
+              </div>
+            </span>
+          </h1>
+
+          <p class="hero-description">
+            Ingénieur informatique réseau & télécom,<br />
+            Développeur Web & Mobile passionné,<br />
+            Spécialisé en Flutter, Laravel et UI/UX Design.
+          </p>
+        </div>
+
+        <div class="hero-visual">
+          <div class="main-visual">
+            <div class="floating-dots">
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+            </div>
+            <div class="profile-image">
+              <img
+                src="IMG_0649_thumb.JPG  "
+                alt="Frédéric KOKOU ESSONE"
+              />
+            </div>
+          </div>
+
+          <div class="circular-badge">
+            <div class="circular-text">
+              <svg viewBox="0 0 140 140">
+                <defs>
+                  <path
+                    id="circle"
+                    d="M 70,70 m -50,0 a 50,50 0 1,1 100,0 a 50,50 0 1,1 -100,0"
+                  ></path>
+                </defs>
+                <text>
+                  <textPath href="#circle">
+                    100% PROJETS RÉCENTS • 100% PROJETS RÉCENTS •
+                  </textPath>
+                </text>
+              </svg>
+            </div>
+            <span class="center-arrow">→</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="small-profile">💼</div>
+
+      <div class="info-counter">
+        <div class="counter-number">01</div>
+        <div class="counter-label">Ingénieur<br />Informatique</div>
+      </div>
+    </div>
+
+    <!-- Bottom Section -->
+    <div class="bottom-section" id="about">
+      <div class="bottom-grid">
+        <div class="bottom-content">
+          <h2>
+            Passionné de Technologie<br />
+            Diplômé en Ingénierie<br />
+            Informatique Réseau & Télécom
+          </h2>
+        </div>
+
+        <div class="bottom-visual-section">
+          <div class="bottom-image">🎨</div>
+          <div class="bottom-info">
+            <p>
+              Développeur Fullstack.<br />
+              Flutter, Laravel, UI/UX Design<br />
+              Expériences Digitales Innovantes |
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Services Section -->
+    <div class="services-section" id="services">
       <div class="services-container">
-        <div class="services-box">
-          <i class="bx bx-code-alt"></i>
-          <h3>Dévéloppement Web</h3>
-          <p>
-            Je suis constamment à la recherche de nouveaux défis et
-            d'opportunités d'apprentissage pour élargir mes compétences et
-            rester à jour avec les dernières tendances du développement web.
-          </p>
-          <a href="#" class="btn">Lire Plus</a>
+        <div class="services-header">
+          <h3>Ce Que Je Fais</h3>
+          <h2>Mes Compétences</h2>
         </div>
 
-        <div class="services-box">
-          <i class="bx bxs-paint"></i>
-          <h3>Graphic Design UI/UX</h3>
-          <p>
-            Étant donné que je suis un développeur web Fullstack, j'ai acquis
-            une solide compréhension des besoins techniques et des attentes des
-            utilisateurs, ce qui me permet de concevoir des interfaces UI/UX
-            efficaces et conviviales, utilisant des outils comme Figma pour
-            donner vie à mes idées.
-          </p>
-          <a href="#" class="btn">Lire Plus</a>
-        </div>
+        <div class="services-grid">
+          <div class="service-card">
+            <div class="service-icon">💻</div>
+            <h4>Développement Web Fullstack</h4>
+            <p>
+              Création d'applications web complètes avec Laravel, Node.js et les
+              dernières technologies frontend et backend.
+            </p>
+          </div>
 
-        <div class="services-box">
-          <i class="bx bx-devices"></i>
-          <h3>Dévéloppement Mobile</h3>
-          <p>
-            En utilisant Flutter comme pilier de mon expertise en développement
-            mobile, je crée des applications réactives et élégantes, offrant une
-            expérience utilisateur immersive et engageante sur chaque appareil.
-          </p>
-          <a href="#" class="btn">Lire Plus</a>
+          <div class="service-card">
+            <div class="service-icon">📱</div>
+            <h4>Développement Mobile Flutter</h4>
+            <p>
+              Applications mobiles réactives et élégantes offrant une expérience
+              utilisateur immersive sur tous les appareils.
+            </p>
+          </div>
+
+          <div class="service-card">
+            <div class="service-icon">🎨</div>
+            <h4>Design UI/UX</h4>
+            <p>
+              Conception d'interfaces utilisateur efficaces et conviviales avec
+              Figma pour donner vie aux idées créatives.
+            </p>
+          </div>
+
+          <div class="service-card">
+            <div class="service-icon">🌐</div>
+            <h4>Réseau & Télécom</h4>
+            <p>
+              Expertise en infrastructure réseau et télécommunications grâce à
+              ma formation d'ingénieur.
+            </p>
+          </div>
+
+          <div class="service-card">
+            <div class="service-icon">🚀</div>
+            <h4>Innovation Technologique</h4>
+            <p>
+              Exploration constante des nouvelles technologies et tendances pour
+              rester à la pointe du développement.
+            </p>
+          </div>
+
+          <div class="service-card">
+            <div class="service-icon">🔧</div>
+            <h4>Code Propre & Moderne</h4>
+            <p>
+              Transformation d'idées en réalité avec une combinaison de code
+              propre et de design innovant.
+            </p>
+          </div>
         </div>
       </div>
-    </section>
+    </div>
 
-    <!-- portfolio section design -->
-    <section class="portfolio" id="portfolio">
-      <h2 class="heading">Derniers <span>Projets</span></h2>
+    <!-- Work Process Section -->
+    <div class="work-section" id="work">
+      <div class="work-container">
+        <div class="work-header">
+          <h3>Comment Je Travaille</h3>
+          <h2>Mon Processus</h2>
+        </div>
+
+        <div class="work-steps">
+          <div class="work-step">
+            <div class="step-number">01</div>
+            <h4 class="step-title">Découverte</h4>
+            <p class="step-description">
+              Analyse de vos besoins, objectifs et contraintes pour définir la
+              stratégie créative optimale.
+            </p>
+          </div>
+
+          <div class="work-step">
+            <div class="step-number">02</div>
+            <h4 class="step-title">Conception</h4>
+            <p class="step-description">
+              Création de wireframes, maquettes et prototypes interactifs pour
+              valider les concepts.
+            </p>
+          </div>
+
+          <div class="work-step">
+            <div class="step-number">03</div>
+            <h4 class="step-title">Développement</h4>
+            <p class="step-description">
+              Implémentation technique avec les meilleures pratiques et
+              technologies modernes.
+            </p>
+          </div>
+
+          <div class="work-step">
+            <div class="step-number">04</div>
+            <h4 class="step-title">Livraison</h4>
+            <p class="step-description">
+              Tests, optimisation et mise en ligne avec accompagnement et
+              support continu.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Portfolio Section -->
+    <div class="portfolio-section" id="products">
       <div class="portfolio-container">
-        <div class="portfolio-box">
-          <img src="portfolio1.jpg" alt="" />
-          <div class="portfolio-layer">
-            <h4>Design Ui/UX</h4>
-            <p>
-              Application mobile de commerce électronique (Marketplace)
+        <div class="portfolio-header">
+          <h3>Mes Réalisations</h3>
+          <h2>Projets Récents</h2>
+        </div>
+
+        <div class="portfolio-grid">
+          <div class="portfolio-item">
+            <div class="portfolio-image">
+              <img
+                src="portfolio1.jpg"
+                alt="Plateforme E-commerce Moderne"
+              />
+            </div>
+            <div class="portfolio-content">
+              <h4 class="portfolio-title">Design Ui/UX</h4>
+              <p class="portfolio-description">
+                 Application mobile de commerce électronique (Marketplace)
               développée avec Flutter.
-            </p>
-            <a
-              href="https://www.figma.com/proto/JQwelCeUUKIJnfY5qvD4RT/Distributeur2.0?page-id=0%3A1&type=design&node-id=5-59&viewport=509%2C612%2C0.1&t=3HRhGERDiOKzceK0-1&scaling=scale-down&starting-point-node-id=171%3A174&mode=design"
-              target="_blank"
-              ><i class="bx bx-link-external"></i
-            ></a>
+              </p>
+              <a href="https://www.figma.com/proto/JQwelCeUUKIJnfY5qvD4RT/Distributeur2.0?page-id=0%3A1&type=design&node-id=5-59&viewport=509%2C612%2C0.1&t=3HRhGERDiOKzceK0-1&scaling=scale-down&starting-point-node-id=171%3A174&mode=design" class="portfolio-link">Voir le Projet →</a>
+            </div>
           </div>
-        </div>
 
-        <div class="portfolio-box">
-          <img src="portfolio2.jpg" alt="" />
-          <div class="portfolio-layer">
-            <h4>Web Design</h4>
-            <p>
-              Refonte du site de la DGS réalisée lors du Stackhackton organisé
+          <div class="portfolio-item">
+            <div class="portfolio-image">
+              <img
+                src="portfolio2.jpg"
+                alt="Application SaaS Dashboard"
+              />
+            </div>
+            <div class="portfolio-content">
+              <h4 class="portfolio-title">Web Design</h4>
+              <p class="portfolio-description">
+                 Refonte du site de la DGS réalisée lors du Stackhackton organisé
               au sein de la SING.
-            </p>
-            <a
-              href="https://www.figma.com/proto/f8zvOU4b0z9rq2K9I8KrjL/Site-web-de-la-DGS?page-id=0%3A1&type=design&node-id=166-4564&viewport=-100%2C731%2C0.05&t=aIfjpvrmmmvhnfiV-1&scaling=scale-down-width&starting-point-node-id=166%3A4564&mode=design"
-              target="_blank"
-              ><i class="bx bx-link-external"></i
-            ></a>
+              </p>
+              <a href="https://www.figma.com/proto/f8zvOU4b0z9rq2K9I8KrjL/Site-web-de-la-DGS?page-id=0%3A1&type=design&node-id=166-4564&viewport=-100%2C731%2C0.05&t=aIfjpvrmmmvhnfiV-1&scaling=scale-down-width&starting-point-node-id=166%3A4564&mode=design" class="portfolio-link">Voir le Projet →</a>
+            </div>
           </div>
-        </div>
 
-        <div class="portfolio-box">
-          <img src="portfolio3.jpg" alt="" />
-          <div class="portfolio-layer">
-            <h4>Web Design</h4>
-            <p>
-              Site web de la société Hiram Communication conçu pour répondre aux
+          <div class="portfolio-item">
+            <div class="portfolio-image">
+              <img
+                src="portfolio3.jpg"
+                alt="Site Web Agence Créative"
+              />
+            </div>
+            <div class="portfolio-content">
+              <h4 class="portfolio-title">Site Web Agence Créative</h4>
+              <p class="portfolio-description">
+                Site web de la société Hiram Communication conçu pour répondre aux
               besoins spécifiques de l'entreprise.
-            </p>
-            <a
-              href="https://www.figma.com/proto/oySmC346WgGzyTgJcvAc0G/Site-Hiram-Prototype?page-id=0%3A1&node-id=0-6&p=f&viewport=279%2C305%2C0.04&t=971qpcVSoMWH46zS-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=0%3A6"
-              ><i class="bx bx-link-external"></i
-            ></a>
+              </p>
+              <a href="https://www.figma.com/proto/oySmC346WgGzyTgJcvAc0G/Site-Hiram-Prototype?page-id=0%3A1&node-id=0-6&p=f&viewport=279%2C305%2C0.04&t=971qpcVSoMWH46zS-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=0%3A6" class="portfolio-link">Voir le Projet →</a>
+            </div>
           </div>
-        </div>
 
-        <div class="portfolio-box">
-          <img src="portfolio4.jpg" alt="" />
-          <div class="portfolio-layer">
-            <h4>Web Design</h4>
-            <p>
-              Découvrez EKENDO, un site que j'ai conçu pour promouvoir des
+          <div class="portfolio-item">
+            <div class="portfolio-image">
+              <img
+                src="portfolio4.jpg"
+                alt="Application Mobile Fitness"
+              />
+            </div>
+            <div class="portfolio-content">
+              <h4 class="portfolio-title">Web Design</h4>
+              <p class="portfolio-description">
+                 Découvrez EKENDO, un site que j'ai conçu pour promouvoir des
               excursions en mer.
-            </p>
-            <a
-              href="https://www.figma.com/proto/tYn7zLsOVeCGnVZrYy9bDj/EKENDO?page-id=0%3A1&node-id=3-2&p=f&viewport=530%2C395%2C0.05&t=0Q0w2Ht1TF8C3f4B-1&scaling=scale-down&content-scaling=fixed"
-              target="_blank"
-              ><i class="bx bx-link-external"></i
-            ></a>
+              </p>
+              <a href="https://www.figma.com/proto/tYn7zLsOVeCGnVZrYy9bDj/EKENDO?page-id=0%3A1&node-id=3-2&p=f&viewport=530%2C395%2C0.05&t=0Q0w2Ht1TF8C3f4B-1&scaling=scale-down&content-scaling=fixed" class="portfolio-link">Voir le Projet →</a>
+            </div>
           </div>
-        </div>
 
-        <div class="portfolio-box">
-          <img src="portfolio5.jpg" alt="" />
-          <div class="portfolio-layer">
-            <h4>Site Web</h4>
-            <p>
-              Réalisation d'un site web pour le Samu Social Gabonais, une
+          <div class="portfolio-item">
+            <div class="portfolio-image">
+              <img
+                src="portfolio5.jpg"
+                alt="Application Mobile Fitness"
+              />
+            </div>
+            <div class="portfolio-content">
+              <h4 class="portfolio-title">Site Web</h4>
+              <p class="portfolio-description">
+                Réalisation d'un site web pour le Samu Social Gabonais, une
               organisation humanitaire qui lutte contre l'exclusion sociale.
-            </p>
-            <a
-              href="https://www.figma.com/proto/ACoNp0YjxDI231ai5U9g2n/SAMU?page-id=0%3A1&node-id=28-1805&p=f&viewport=295%2C153%2C0.04&t=UAm0g642l25u0L5M-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=28%3A1805"
-              target="_blank"
-              ><i class="bx bx-link-external"></i
-            ></a>
+              </p>
+              <a href="https://www.figma.com/proto/ACoNp0YjxDI231ai5U9g2n/SAMU?page-id=0%3A1&node-id=28-1805&p=f&viewport=295%2C153%2C0.04&t=UAm0g642l25u0L5M-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=28%3A1805" class="portfolio-link">Voir le Projet →</a>
+            </div>
           </div>
-        </div>
 
-        <div class="portfolio-box">
-          <img src="portfolio6.jpg" alt="" />
-          <div class="portfolio-layer">
-            <h4>Web Design</h4>
-            <p>Création d’un prototype de site web pour BGFI Bourse.</p>
-            <a
-              href="https://www.figma.com/proto/XIK0sukVl8I24rx2NMhhpx/BICIG-Bourse?page-id=0%3A1&node-id=280-1800&viewport=592%2C102%2C0.08&t=h1cWVOQKfanYmQZr-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=280%3A1800"
-              target="_blank"
-              ><i class="bx bx-link-external"></i
-            ></a>
+          <div class="portfolio-item">
+            <div class="portfolio-image">
+              <img
+                src="portfolio6.jpg"
+                alt="Application Mobile Fitness"
+              />
+            </div>
+            <div class="portfolio-content">
+              <h4 class="portfolio-title">Web Design</h4>
+              <p class="portfolio-description">
+               Création d’un prototype de site web pour BGFI Bourse.
+              </p>
+              <a href="https://www.figma.com/proto/XIK0sukVl8I24rx2NMhhpx/BICIG-Bourse?page-id=0%3A1&node-id=280-1800&viewport=592%2C102%2C0.08&t=h1cWVOQKfanYmQZr-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=280%3A1800" class="portfolio-link">Voir le Projet →</a>
+            </div>
           </div>
-        </div>
 
-        <div class="portfolio-box">
-          <img src="portfolio7.png" alt="" />
-          <div class="portfolio-layer">
-            <h4>Web Design</h4>
-            <p>Création d’un prototype de site web pour Le Boucher</p>
-            <a
-              href="https://www.figma.com/proto/htnJh2ncTYyeee2ANCYFqn/Le-Boucher?page-id=0%3A1&node-id=1-1795&p=f&viewport=612%2C173%2C0.03&t=rYo4a87QEJDOxych-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=1%3A1795"
-              target="_blank"
-              ><i class="bx bx-link-external"></i
-            ></a>
+          <div class="portfolio-item">
+            <div class="portfolio-image">
+              <img
+                src="portfolio7.png"
+                alt="Application Mobile Fitness"
+              />
+            </div>
+            <div class="portfolio-content">
+              <h4 class="portfolio-title">Web Design</h4>
+              <p class="portfolio-description">
+                Création d’un prototype de site web pour Le Boucher
+              </p>
+              <a href="https://www.figma.com/proto/htnJh2ncTYyeee2ANCYFqn/Le-Boucher?page-id=0%3A1&node-id=1-1795&p=f&viewport=612%2C173%2C0.03&t=rYo4a87QEJDOxych-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=1%3A1795" class="portfolio-link">Voir le Projet →</a>
+            </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
 
-    <!-- contact section design -->
-    <section class="contact" id="contact">
-      <h2 class="heading">Contactez<span>-Moi</span></h2>
-      <form id="my-form" action="https://formspree.io/f/moqgyekv" method="POST">
-        <div class="input-box">
-          <input type="text" name="nom" placeholder="Nom Complet" required />
-          <input
-            type="email"
-            name="email"
-            placeholder="Addresse Email"
-            required
-          />
+    <!-- Footer -->
+    <footer id="contact">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <h3>Frédéric KOKOU ESSONE</h3>
+          <p>
+            Bonjour ! Je suis Frédéric KOKOU ESSONE, un passionné de la
+            technologie et développeur fullstack. Diplômé en ingénierie
+            informatique réseau et télécom, je crée des sites web élégants et
+            des applications mobiles fonctionnelles offrant une expérience
+            utilisateur exceptionnelle.
+          </p>
         </div>
 
-        <div class="input-box">
-          <input
-            type="tel"
-            name="telephone"
-            placeholder="Numéro de Téléphone"
-          />
-          <input type="text" name="sujet" placeholder="Sujet de l'email" />
+        <div class="footer-column">
+          <h4>Compétences</h4>
+          <ul>
+            <li><a href="#services">Développement Web</a></li>
+            <li><a href="#services">Flutter Mobile</a></li>
+            <li><a href="#services">Design UI/UX</a></li>
+            <li><a href="#services">Réseau & Télécom</a></li>
+            <li><a href="#services">Innovation Tech</a></li>
+          </ul>
         </div>
 
-        <textarea
-          name="message"
-          cols="30"
-          rows="10"
-          placeholder="Votre Message"
-          required
-        ></textarea>
-        <input type="submit" value="Envoyer" class="btn" />
-      </form>
-    </section>
+        <div class="footer-column">
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="#about">À Propos</a></li>
+            <li><a href="#work">Mon Processus</a></li>
+            <li><a href="#products">Mes Projets</a></li>
+            <li><a href="#designers">Portfolio</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
 
-    <!-- footer design -->
-    <footer class="footer">
-      <div class="footer-text">
-        <p>Copyright &copy; 2025 by SnapDofus-_- | All Right Reserved.</p>
+        <div class="footer-column">
+          <h4>Contact</h4>
+          <ul>
+            <li>
+              <a href="mailto:contact@frederic-essone.com"
+                >contact@frederic-essone.com</a
+              >
+            </li>
+            <li><a href="tel:+33123456789">Disponible</a></li>
+            <li><a href="#">Gabon</a></li>
+            <li>
+              <a href="https://snapdofus.github.io/" target="_blank"
+                >Portfolio Original</a
+              >
+            </li>
+          </ul>
+        </div>
       </div>
 
-      <div class="footer-iconTop">
-        <a href="#"><i class="bx bx-up-arrow-alt"></i></a>
+      <div class="footer-bottom">
+        <p>&copy; 2024 Frédéric KOKOU ESSONE. Tous droits réservés.</p>
+        <div class="social-links">
+          <a href="#">📘</a>
+          <a href="#">🐦</a>
+          <a href="#">📷</a>
+          <a href="#">💼</a>
+        </div>
       </div>
     </footer>
 
-    <!-- scroll reveal -->
-    <script src="https://unpkg.com/scrollreveal"></script>
-
-    <!-- typed js -->
-    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-    <!-- custom js -->
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
   </body>
 </html>
