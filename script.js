@@ -108,14 +108,6 @@
             });
         });
 
-          // Menu mobile toggle
-        const mobileToggle = document.querySelector('.mobile-menu-toggle');
-        const mobileNav = document.querySelector('.mobile-nav');
-        
-        mobileToggle.addEventListener('click', () => {
-            mobileNav.classList.toggle('active');
-        });
-
         // Fermer le menu mobile lors du clic sur un lien
         const mobileLinks = document.querySelectorAll('.mobile-nav a');
         mobileLinks.forEach(link => {
