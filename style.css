@@ -395,7 +395,6 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 600px;
 }
 
 .main-visual {
@@ -882,7 +881,7 @@ h1 {
 }
 
 .portfolio-image {
-  height: 300px;
+  height: 40%;
   background: linear-gradient(135deg, #8b7355, #2c5f7c);
   position: relative;
   overflow: hidden;
