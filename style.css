@@ -622,13 +622,18 @@ h1 {
   box-shadow: 0 20px 50px rgba(10, 10, 10, 0.15);
 }
 
-.bottom-image::after {
-  content: "";
+/* sticker : par défaut en bas à droite */
+.bottom-image .bottom-sticker {
   position: absolute;
-  inset: 0;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Ccircle cx='100' cy='100' r='50' fill='none' stroke='%23fff' stroke-width='1' opacity='0.2'/%3E%3C/svg%3E")
-    center/cover;
+  right: 12px;
+  bottom: 12px;
+  width: 70px;      /* ajuste la taille ici */
+  height: auto;
+  pointer-events: none;
+  display: block;
 }
+
+
 
 .bottom-info {
   flex: 1;

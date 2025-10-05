@@ -149,7 +149,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <span class="close-popup">&times;</span>
             <h3>Me contacter sur WhatsApp</h3>
             <p>Envoyez-moi un message pour discuter d'un projet web ou mobile, ou explorer comment je peux vous aider en développement et design.</p>
-            <a href="https://wa.me/24162911886?text=Bonjour%20Fr%C3%A9d%C3%A9ric%2C%20je%20souhaite%20discuter%20d’un%20projet%20web%20ou%20mobile%20et%20explorer%20comment%20vous%20pouvez%20m’accompagner." target="_blank" class="whatsapp-link">Ouvrir WhatsApp</a>
+            <a href="https://wa.me/24174219524?text=Bonjour%20Fr%C3%A9d%C3%A9ric%2C%20je%20souhaite%20discuter%20d’un%20projet%20web%20ou%20mobile%20et%20explorer%20comment%20vous%20pouvez%20m’accompagner." target="_blank" class="whatsapp-link">Ouvrir WhatsApp</a>
         </div>
     `;
     document.body.appendChild(whatsappPopup);
