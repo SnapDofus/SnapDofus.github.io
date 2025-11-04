@@ -1552,6 +1552,8 @@ html {
   }
 }
 
+
+
 /* Pourcentage de chargement */
 .loading-percentage {
   margin-top: 20px;
@@ -1629,3 +1631,4 @@ html {
     opacity: 0;
   }
 }
+  
