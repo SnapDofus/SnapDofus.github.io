@@ -340,40 +340,18 @@ const closePopup = document.querySelector('.close-popup');
 
 if (contactBtn && whatsappPopup) {
     contactBtn.addEventListener('click', () => {
-        whatsappPopup.classList.add('show');
-        gsap.from(whatsappPopup, {
-            scale: 0.8,
-            opacity: 0,
-            duration: 0.3,
-            ease: 'back.out(1.7)'
-        });
+        whatsappPopup.classList.add('active');
     });
     
     if (closePopup) {
         closePopup.addEventListener('click', () => {
-            gsap.to(whatsappPopup, {
-                scale: 0.8,
-                opacity: 0,
-                duration: 0.3,
-                ease: 'power2.in',
-                onComplete: () => {
-                    whatsappPopup.classList.remove('show');
-                }
-            });
+            whatsappPopup.classList.remove('active');
         });
     }
     
     window.addEventListener('click', (e) => {
         if (e.target === whatsappPopup) {
-            gsap.to(whatsappPopup, {
-                scale: 0.8,
-                opacity: 0,
-                duration: 0.3,
-                ease: 'power2.in',
-                onComplete: () => {
-                    whatsappPopup.classList.remove('show');
-                }
-            });
+            whatsappPopup.classList.remove('active');
         }
     });
 }
