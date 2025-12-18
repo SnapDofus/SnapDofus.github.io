@@ -460,8 +460,8 @@ h1 {
   transform: translateY(-50%);
   cursor: pointer;
   transition: all 0.3s;
-  text-decoration: none; /* enlève le soulignement */
-  color: inherit; /* reprend la couleur du texte parent */
+  text-decoration: none;
+  color: #0a0a0a;
 }
 
 .interactive-badge:hover {
@@ -481,7 +481,9 @@ h1 {
 }
 
 .arrow-icon {
-  font-size: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #0a0a0a;
   animation: slideRight 2s ease-in-out infinite;
 }
 
@@ -1250,39 +1252,21 @@ h1 {
 
 .portfolio-item {
   background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
   border-radius: 20px;
   overflow: hidden;
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
   border: 1px solid rgba(255, 255, 255, 0.1);
   position: relative;
-  will-change: transform;
 }
 
 .portfolio-item:before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 20px;
-  padding: 2px;
-  background: linear-gradient(135deg, rgba(0, 255, 136, 0.3), rgba(0, 204, 255, 0.3));
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  opacity: 0;
-  transition: opacity 0.5s ease;
+  display: none;
 }
 
 .portfolio-item:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 30px 80px rgba(0, 255, 136, 0.2), 0 0 0 1px rgba(0, 255, 136, 0.2);
-  background: rgba(255, 255, 255, 0.05);
-}
-
-.portfolio-item:hover:before {
-  opacity: 0.5;
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 255, 136, 0.15);
 }
 
 .portfolio-image {
@@ -1314,11 +1298,7 @@ h1 {
 }
 
 .portfolio-item:hover .portfolio-title {
-  background: linear-gradient(135deg, #00ff88, #00ccff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  transform: translateX(5px);
+  color: #00ff88;
 }
 
 .portfolio-description {
@@ -1351,10 +1331,7 @@ h1 {
 }
 
 .portfolio-link:hover {
-  gap: 12px;
   background: rgba(0, 255, 136, 0.15);
-  box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
-  transform: translateX(5px);
 }
 
 /* Footer */
