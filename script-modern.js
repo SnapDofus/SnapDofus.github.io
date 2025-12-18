@@ -339,18 +339,28 @@ const whatsappPopup = document.getElementById('whatsapp-popup');
 const closePopup = document.querySelector('.close-popup');
 
 if (contactBtn && whatsappPopup) {
-    contactBtn.addEventListener('click', () => {
+    // Gestion du clic sur le bouton contact
+    contactBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        console.log('Bouton contact cliqué');
         whatsappPopup.classList.add('active');
     });
     
+    // Gestion du clic sur le bouton de fermeture
     if (closePopup) {
-        closePopup.addEventListener('click', () => {
+        closePopup.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            console.log('Fermeture popup');
             whatsappPopup.classList.remove('active');
         });
     }
     
-    window.addEventListener('click', (e) => {
+    // Fermer en cliquant sur l'overlay
+    whatsappPopup.addEventListener('click', (e) => {
         if (e.target === whatsappPopup) {
+            console.log('Clic sur overlay');
             whatsappPopup.classList.remove('active');
         }
     });
