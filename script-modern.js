@@ -1,49 +1,61 @@
 // ========================================
-// CURSEUR PERSONNALISÉ 3D
+// CURSEUR PERSONNALISÉ 3D (Désactivé sur mobile/tactile)
 // ========================================
-const cursor = document.querySelector('.custom-cursor');
-const cursorDot = document.querySelector('.cursor-dot');
-const cursorOutline = document.querySelector('.cursor-outline');
+const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
-let mouseX = 0, mouseY = 0;
-let cursorX = 0, cursorY = 0;
-let outlineX = 0, outlineY = 0;
+if (!isTouchDevice) {
+    const cursor = document.querySelector('.custom-cursor');
+    const cursorDot = document.querySelector('.cursor-dot');
+    const cursorOutline = document.querySelector('.cursor-outline');
 
-document.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-});
+    if (cursor && cursorDot && cursorOutline) {
+        let mouseX = 0, mouseY = 0;
+        let cursorX = 0, cursorY = 0;
+        let outlineX = 0, outlineY = 0;
 
-// Animation fluide du curseur
-function animateCursor() {
-    // Le point suit immédiatement
-    cursorX += (mouseX - cursorX) * 0.8;
-    cursorY += (mouseY - cursorY) * 0.8;
-    
-    // Le contour suit avec un léger délai
-    outlineX += (mouseX - outlineX) * 0.15;
-    outlineY += (mouseY - outlineY) * 0.15;
-    
-    cursorDot.style.left = cursorX + 'px';
-    cursorDot.style.top = cursorY + 'px';
-    cursorOutline.style.left = outlineX + 'px';
-    cursorOutline.style.top = outlineY + 'px';
-    
-    requestAnimationFrame(animateCursor);
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        // Animation fluide du curseur
+        function animateCursor() {
+            // Le point suit immédiatement
+            cursorX += (mouseX - cursorX) * 0.8;
+            cursorY += (mouseY - cursorY) * 0.8;
+            
+            // Le contour suit avec un léger délai
+            outlineX += (mouseX - outlineX) * 0.15;
+            outlineY += (mouseY - outlineY) * 0.15;
+            
+            cursorDot.style.left = cursorX + 'px';
+            cursorDot.style.top = cursorY + 'px';
+            cursorOutline.style.left = outlineX + 'px';
+            cursorOutline.style.top = outlineY + 'px';
+            
+            requestAnimationFrame(animateCursor);
+        }
+
+        animateCursor();
+
+        // Effet sur les éléments interactifs
+        const interactiveElements = document.querySelectorAll('a, button, .portfolio-item, input, textarea');
+        interactiveElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.classList.add('active');
+            });
+            el.addEventListener('mouseleave', () => {
+                cursor.classList.remove('active');
+            });
+        });
+    }
+} else {
+    // Cacher le curseur sur mobile
+    const cursor = document.querySelector('.custom-cursor');
+    if (cursor) {
+        cursor.style.display = 'none';
+    }
 }
-
-animateCursor();
-
-// Effet sur les éléments interactifs
-const interactiveElements = document.querySelectorAll('a, button, .portfolio-item, input, textarea');
-interactiveElements.forEach(el => {
-    el.addEventListener('mouseenter', () => {
-        cursor.classList.add('active');
-    });
-    el.addEventListener('mouseleave', () => {
-        cursor.classList.remove('active');
-    });
-});
 
 // ========================================
 // ARRIÈRE-PLAN 3D AVEC THREE.JS
@@ -334,37 +346,65 @@ if (mobileMenuBtn) {
 // ========================================
 // POPUP WHATSAPP
 // ========================================
-const contactBtn = document.querySelector('.contact-btn');
-const whatsappPopup = document.getElementById('whatsapp-popup');
-const closePopup = document.querySelector('.close-popup');
+// WhatsApp Popup - Version simplifiée et robuste
+document.addEventListener('DOMContentLoaded', function() {
+    const contactBtn = document.querySelector('.contact-btn');
+    const whatsappPopup = document.getElementById('whatsapp-popup');
+    const closePopup = document.querySelector('.close-popup');
 
-if (contactBtn && whatsappPopup) {
-    // Gestion du clic sur le bouton contact
-    contactBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        console.log('Bouton contact cliqué');
-        whatsappPopup.classList.add('active');
-    });
-    
-    // Gestion du clic sur le bouton de fermeture
-    if (closePopup) {
-        closePopup.addEventListener('click', (e) => {
+    console.log('Contact button:', contactBtn);
+    console.log('WhatsApp popup:', whatsappPopup);
+
+    if (contactBtn && whatsappPopup) {
+        // Gestion du clic sur le bouton contact
+        contactBtn.addEventListener('click', function(e) {
             e.preventDefault();
             e.stopPropagation();
-            console.log('Fermeture popup');
-            whatsappPopup.classList.remove('active');
-        });
-    }
-    
-    // Fermer en cliquant sur l'overlay
-    whatsappPopup.addEventListener('click', (e) => {
-        if (e.target === whatsappPopup) {
-            console.log('Clic sur overlay');
-            whatsappPopup.classList.remove('active');
+            console.log('Bouton contact cliqué!');
+            whatsappPopup.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }, { passive: false });
+        
+        // Support tactile pour mobile
+        contactBtn.addEventListener('touchend', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            console.log('Touch sur bouton contact!');
+            whatsappPopup.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }, { passive: false });
+        
+        // Gestion du clic sur le bouton de fermeture
+        if (closePopup) {
+            closePopup.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log('Fermeture popup');
+                whatsappPopup.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+            
+            closePopup.addEventListener('touchend', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log('Touch fermeture popup');
+                whatsappPopup.classList.remove('active');
+                document.body.style.overflow = '';
+            }, { passive: false });
         }
-    });
-}
+        
+        // Fermer en cliquant sur l'overlay
+        whatsappPopup.addEventListener('click', function(e) {
+            if (e.target === whatsappPopup) {
+                console.log('Clic sur overlay');
+                whatsappPopup.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+    } else {
+        console.error('Éléments WhatsApp non trouvés!');
+    }
+});
 
 // ========================================
 // SMOOTH SCROLL

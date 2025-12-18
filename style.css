@@ -16,6 +16,12 @@ body {
   cursor: none; /* Cache le curseur par défaut pour le curseur personnalisé */
 }
 
+@media (max-width: 768px), (pointer: coarse) {
+  body {
+    cursor: auto !important;
+  }
+}
+
 /* ========================================
    CURSEUR PERSONNALISÉ 3D
    ======================================== */
@@ -62,6 +68,15 @@ body {
   width: 60px;
   height: 60px;
   border-color: #ff0088;
+}
+
+/* Cacher le curseur personnalisé sur mobile */
+@media (max-width: 768px), (pointer: coarse) {
+  .custom-cursor,
+  .cursor-dot,
+  .cursor-outline {
+    display: none !important;
+  }
 }
 
 /* ========================================
