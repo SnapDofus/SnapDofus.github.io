@@ -67,9 +67,6 @@
     <!-- GSAP pour animations fluides -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <!-- Spline Viewer pour le robot 3D -->
-    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.12.22/build/spline-viewer.js"></script>
-
     <!-- Police Google (exemple) -->
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
@@ -87,69 +84,11 @@
       <!-- Arrière-plan 3D avec Three.js -->
       <canvas id="bg-canvas"></canvas>
 
-      <!-- Loader Développeur Professionnel -->
+      <!-- Loader Vidéo -->
        <div id="loader" class="loader">
-        <canvas id="codeRainCanvas"></canvas>
-        
-        <div class="loader-content">
-            <!-- Terminal Code -->
-            <div class="terminal-window">
-                <div class="terminal-header">
-                    <div class="terminal-buttons">
-                        <span class="btn-close"></span>
-                        <span class="btn-minimize"></span>
-                        <span class="btn-maximize"></span>
-                    </div>
-                    <div class="terminal-title">portfolio.exe</div>
-                </div>
-                <div class="terminal-body">
-                    <div class="terminal-line">
-                        <span class="prompt">$</span>
-                        <span class="command typing-text">npm run dev</span>
-                    </div>
-                    <div class="terminal-line delay-1">
-                        <span class="output">⚡ Compiling portfolio...</span>
-                    </div>
-                    <div class="terminal-line delay-2">
-                        <span class="output success">✓ Skills loaded</span>
-                    </div>
-                    <div class="terminal-line delay-3">
-                        <span class="output success">✓ Projects loaded</span>
-                    </div>
-                    <div class="terminal-line delay-4">
-                        <span class="output success">✓ Experience loaded</span>
-                    </div>
-                    <div class="terminal-line delay-5">
-                        <span class="output warning">⚙ Building assets...</span>
-                    </div>
-                    <div class="terminal-line delay-6">
-                        <span class="loading-percentage" id="percentage">0%</span>
-                        <div class="progress-bar-terminal">
-                            <div class="progress-fill-terminal" id="loadingProgress"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Code 3D Cube -->
-            <div class="code-cube">
-                <div class="cube-face front">&lt;/&gt;</div>
-                <div class="cube-face back">{ }</div>
-                <div class="cube-face right">[ ]</div>
-                <div class="cube-face left">( )</div>
-                <div class="cube-face top">=&gt;</div>
-                <div class="cube-face bottom">&lt;-&gt;</div>
-            </div>
-            
-            <!-- Technologies Icons Floating -->
-            <div class="tech-icons">
-                <div class="tech-icon" style="--delay: 0s">JS</div>
-                <div class="tech-icon" style="--delay: 0.2s">PHP</div>
-                <div class="tech-icon" style="--delay: 0.4s">CSS</div>
-                <div class="tech-icon" style="--delay: 0.6s">HTML</div>
-                <div class="tech-icon" style="--delay: 0.8s">SQL</div>
-            </div>
-        </div>
+        <video id="loadingVideo" class="loading-video" muted playsinline>
+            <source src="loading.mp4" type="video/mp4">
+        </video>
     </div>
 
     <!-- Header -->
@@ -160,7 +99,6 @@
         <a href="#work">Processus</a>
         <a href="#about">À Propos</a>
         <a href="#products">Projets</a>
-        <a href="#products">Portfolio</a>
         <button class="contact-btn">Contacter moi</button>
       </nav>
     </header>

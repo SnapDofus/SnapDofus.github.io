@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Loader Vidéo</title>
+    <link rel="stylesheet" href="loader-dev.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        .content {
+            padding: 50px;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <!-- Loader Vidéo -->
+    <div id="loader" class="loader">
+        <video id="loadingVideo" class="loading-video" muted playsinline>
+            <source src="loading.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <!-- Contenu principal -->
+    <div class="content">
+        <h1>🎉 La vidéo de chargement s'est terminée!</h1>
+        <p>Si vous voyez ce message, le loader fonctionne correctement.</p>
+        <p><small>Rechargez la page (F5) pour voir le loader à nouveau!</small></p>
+    </div>
+
+    <script>
+        // ========================================
+        // GESTION DU LOADER VIDÉO
+        // ========================================
+        window.addEventListener('DOMContentLoaded', function() {
+            const loaderEl = document.getElementById('loader');
+            const videoEl = document.getElementById('loadingVideo');
+
+            // Fonction pour cacher le loader
+            function hideLoader() {
+                if (loaderEl) {
+                    loaderEl.style.opacity = '0';
+                    setTimeout(() => {
+                        loaderEl.style.display = 'none';
+                        if (videoEl) {
+                            videoEl.pause();
+                        }
+                    }, 500);
+                }
+            }
+
+            // Lancer la vidéo
+            if (videoEl) {
+                videoEl.play().catch(err => {
+                    console.log('Lecture vidéo:', err);
+                    // Si la vidéo ne peut pas se lire, cacher quand même le loader
+                    setTimeout(hideLoader, 4000);
+                });
+            }
+
+            // Cacher le loader après 4 secondes
+            setTimeout(hideLoader, 4000);
+        });
+    </script>
+</body>
+</html>

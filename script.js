@@ -177,132 +177,75 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
-// Configuration
-        const canvas = document.getElementById('particleCanvas');
-        const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-
-        // Particules
-        class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 3 + 1;
-                this.speedX = (Math.random() - 0.5) * 2;
-                this.speedY = (Math.random() - 0.5) * 2;
-                this.code = this.getRandomCode();
-                this.opacity = Math.random() * 0.5 + 0.3;
-            }
-
-            getRandomCode() {
-                const codes = ['{}', '()', '[]', '<>', '==', '!=', '&&', '||', '=>', '++', '--', '//'];
-                return codes[Math.floor(Math.random() * codes.length)];
-            }
-
-            update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-
-                if (this.x > canvas.width) this.x = 0;
-                if (this.x < 0) this.x = canvas.width;
-                if (this.y > canvas.height) this.y = 0;
-                if (this.y < 0) this.y = canvas.height;
-            }
-
-            draw() {
-                ctx.fillStyle = `rgba(255, 168, 29, ${this.opacity})`;
-                ctx.font = `${this.size * 8}px Courier New`;
-                ctx.fillText(this.code, this.x, this.y);
-            }
-        }
-
-        // Créer les particules
-        const particles = [];
-        for (let i = 0; i < 50; i++) {
-            particles.push(new Particle());
-        }
-
-        // Animation des particules
-        function animateParticles() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        // ========================================
+        // GESTION DU LOADER VIDÉO
+        // ========================================
+        window.addEventListener('DOMContentLoaded', function() {
+            console.log('🎬 Page chargée, initialisation du loader vidéo...');
             
-            particles.forEach(particle => {
-                particle.update();
-                particle.draw();
+            const loaderEl = document.getElementById('loader');
+            const videoEl = document.getElementById('loadingVideo');
+
+            console.log('Loader element:', loaderEl);
+            console.log('Video element:', videoEl);
+
+            if (!loaderEl) {
+                console.error('❌ Loader element non trouvé!');
+                return;
+            }
+
+            if (!videoEl) {
+                console.error('❌ Video element non trouvé!');
+                return;
+            }
+
+            // S'assurer que le loader est visible
+            loaderEl.style.display = 'flex';
+            loaderEl.style.opacity = '1';
+            console.log('✅ Loader affiché');
+
+            // Fonction pour cacher le loader
+            function hideLoader() {
+                console.log('⏱️ Début de masquage du loader...');
+                if (loaderEl) {
+                    loaderEl.style.opacity = '0';
+                    setTimeout(() => {
+                        loaderEl.style.display = 'none';
+                        if (videoEl) {
+                            videoEl.pause();
+                        }
+                        console.log('✅ Loader masqué');
+                    }, 500);
+                }
+            }
+
+            // Événements de la vidéo pour déboguer
+            videoEl.addEventListener('loadeddata', () => {
+                console.log('✅ Vidéo chargée et prête');
             });
 
-            // Lignes de connexion
-            particles.forEach((p1, i) => {
-                particles.slice(i + 1).forEach(p2 => {
-                    const dx = p1.x - p2.x;
-                    const dy = p1.y - p2.y;
-                    const distance = Math.sqrt(dx * dx + dy * dy);
+            videoEl.addEventListener('playing', () => {
+                console.log('▶️ Vidéo en cours de lecture');
+            });
 
-                    if (distance < 150) {
-                        ctx.strokeStyle = `rgba(255, 168, 29, ${0.2 - distance / 750})`;
-                        ctx.lineWidth = 1;
-                        ctx.beginPath();
-                        ctx.moveTo(p1.x, p1.y);
-                        ctx.lineTo(p2.x, p2.y);
-                        ctx.stroke();
-                    }
+            videoEl.addEventListener('error', (e) => {
+                console.error('❌ Erreur de chargement vidéo:', e);
+            });
+
+            // Lancer la vidéo
+            console.log('🎬 Tentative de lecture de la vidéo...');
+            const playPromise = videoEl.play();
+            
+            if (playPromise !== undefined) {
+                playPromise.then(() => {
+                    console.log('✅ Vidéo lancée avec succès!');
+                }).catch(err => {
+                    console.error('❌ Erreur de lecture:', err.message);
+                    // Si la vidéo ne peut pas se lire, cacher quand même le loader
+                    setTimeout(hideLoader, 4000);
                 });
-            });
-
-            requestAnimationFrame(animateParticles);
-        }
-
-        animateParticles();
-
-        // Hexagones flottants
-        const hexContainer = document.getElementById('hexContainer');
-        for (let i = 0; i < 10; i++) {
-            const hex = document.createElement('div');
-            hex.className = 'hexagon';
-            hex.style.left = Math.random() * 100 + '%';
-            hex.style.animationDuration = (Math.random() * 10 + 10) + 's';
-            hex.style.animationDelay = Math.random() * 5 + 's';
-            hexContainer.appendChild(hex);
-        }
-
-        // Code Matrix
-        const codeMatrix = document.getElementById('codeMatrix');
-        const codeChars = 'const let var function return if else for while class import export async await';
-        
-        for (let i = 0; i < 20; i++) {
-            const column = document.createElement('div');
-            column.className = 'matrix-column';
-            column.style.left = Math.random() * 100 + '%';
-            column.style.animationDuration = (Math.random() * 3 + 2) + 's';
-            column.style.animationDelay = Math.random() * 2 + 's';
-            
-            const words = codeChars.split(' ');
-            column.textContent = words[Math.floor(Math.random() * words.length)];
-            
-            codeMatrix.appendChild(column);
-        }
-
-        // Simulation de chargement
-        const percentageEl = document.getElementById('percentage');
-        let progress = 0;
-
-        const loadingInterval = setInterval(() => {
-            progress += Math.random() * 15;
-            if (progress > 100) progress = 100;
-            
-            percentageEl.textContent = Math.floor(progress) + '%';
-            
-            if (progress >= 100) {
-                clearInterval(loadingInterval);
-                setTimeout(() => {
-                    document.getElementById('loader').classList.add('hidden');
-                }, 500);
             }
-        }, 200);
 
-        // Responsive
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+            // Cacher le loader après 4 secondes
+            setTimeout(hideLoader, 4000);
         });

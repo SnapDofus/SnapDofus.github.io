@@ -1,6 +1,45 @@
 /* ========================================
-   NOUVEAU LOADER DÉVELOPPEUR
+   LOADER VIDÉO - PLEIN ÉCRAN
    ======================================== */
+
+.loader {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #000;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999 !important;
+    transition: opacity 0.5s ease;
+    overflow: hidden !important;
+}
+
+.loading-video {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    z-index: 1;
+}
+
+/* Ajustement pour mobile portrait - vidéo centrée et visible */
+@media (max-width: 768px) and (orientation: portrait) {
+    .loading-video {
+        width: 100%;
+        height: auto;
+        min-height: 100%;
+        object-fit: cover;
+    }
+}
 
 /* Terminal Window */
 .terminal-window {

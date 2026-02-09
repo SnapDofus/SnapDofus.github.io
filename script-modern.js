@@ -148,70 +148,44 @@ gsap.registerPlugin(ScrollTrigger);
 // ========================================
 
 // Démarrer immédiatement
+// ========================================
+// GESTION DU LOADER VIDÉO
+// ========================================
 document.addEventListener('DOMContentLoaded', function() {
-    const loader = document.getElementById('loader');
-    const percentageElement = document.getElementById('percentage');
-    const progressBar = document.getElementById('loadingProgress');
+    console.log('🎬 Page chargée, initialisation du loader vidéo...');
     
-    // Code Rain Effect (Matrix style)
-    const canvas = document.getElementById('codeRainCanvas');
-    if (canvas) {
-        const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        
-        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789<>{}[]()=/\\|@#$%^&*';
-        const fontSize = 14;
-        const columns = canvas.width / fontSize;
-        const drops = Array(Math.floor(columns)).fill(1);
-        
-        function drawCodeRain() {
-            ctx.fillStyle = 'rgba(10, 10, 15, 0.05)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            
-            ctx.fillStyle = '#00ff88';
-            ctx.font = fontSize + 'px monospace';
-            
-            for (let i = 0; i < drops.length; i++) {
-                const text = chars[Math.floor(Math.random() * chars.length)];
-                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-                
-                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-                    drops[i] = 0;
-                }
-                drops[i]++;
-            }
-        }
-        
-        const codeRainInterval = setInterval(drawCodeRain, 33);
-        
-        // Arrêter après 4 secondes
-        setTimeout(() => clearInterval(codeRainInterval), 4000);
+    const loaderEl = document.getElementById('loader');
+    const videoEl = document.getElementById('loadingVideo');
+
+    console.log('Loader element:', loaderEl);
+    console.log('Video element:', videoEl);
+
+    if (!loaderEl) {
+        console.error('❌ Loader element non trouvé!');
+        return;
     }
-    
-    // Progression du loader
-    let progress = 0;
-    const interval = setInterval(() => {
-        progress += 5;
-        
-        if (percentageElement) {
-            percentageElement.textContent = progress + '%';
-        }
-        if (progressBar) {
-            progressBar.style.width = progress + '%';
-        }
-        
-        if (progress >= 100) {
-            clearInterval(interval);
-            
-            // Cacher le loader
+
+    if (!videoEl) {
+        console.error('❌ Video element non trouvé!');
+        return;
+    }
+
+    // S'assurer que le loader est visible
+    loaderEl.style.display = 'flex';
+    loaderEl.style.opacity = '1';
+    console.log('✅ Loader affiché');
+
+    // Fonction pour cacher le loader
+    function hideLoader() {
+        console.log('⏱️ Début de masquage du loader...');
+        if (loaderEl) {
+            loaderEl.style.opacity = '0';
             setTimeout(() => {
-                if (loader) {
-                    loader.style.opacity = '0';
-                    setTimeout(() => {
-                        loader.style.display = 'none';
-                    }, 1000);
+                loaderEl.style.display = 'none';
+                if (videoEl) {
+                    videoEl.pause();
                 }
+                console.log('✅ Loader masqué');
                 
                 // Animations d'entrée
                 if (typeof gsap !== 'undefined') {
@@ -233,7 +207,37 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }, 500);
         }
-    }, 60);
+    }
+
+    // Événements de la vidéo pour déboguer
+    videoEl.addEventListener('loadeddata', () => {
+        console.log('✅ Vidéo chargée et prête');
+    });
+
+    videoEl.addEventListener('playing', () => {
+        console.log('▶️ Vidéo en cours de lecture');
+    });
+
+    videoEl.addEventListener('error', (e) => {
+        console.error('❌ Erreur de chargement vidéo:', e);
+    });
+
+    // Lancer la vidéo
+    console.log('🎬 Tentative de lecture de la vidéo...');
+    const playPromise = videoEl.play();
+    
+    if (playPromise !== undefined) {
+        playPromise.then(() => {
+            console.log('✅ Vidéo lancée avec succès!');
+        }).catch(err => {
+            console.error('❌ Erreur de lecture:', err.message);
+            // Si la vidéo ne peut pas se lire, cacher quand même le loader
+            setTimeout(hideLoader, 4000);
+        });
+    }
+
+    // Cacher le loader après 4 secondes
+    setTimeout(hideLoader, 4000);
 });
 
 // Animations au scroll pour toutes les sections
