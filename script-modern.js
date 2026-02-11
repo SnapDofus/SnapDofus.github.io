@@ -172,7 +172,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Détecter si on est sur mobile ou desktop et charger la bonne vidéo
     const isMobile = window.innerWidth <= 768;
-    const videoSource = isMobile ? 'loading1.mp4' : 'loading.mp4';
+    const videoSource = 'loading.mp4';
     console.log(`📱 Appareil détecté: ${isMobile ? 'Mobile' : 'Desktop'} - Vidéo: ${videoSource}`);
     
     // Définir la source de la vidéo
@@ -182,6 +182,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // S'assurer que le loader est visible
     loaderEl.style.display = 'flex';
     loaderEl.style.opacity = '1';
+    loaderEl.style.pointerEvents = 'all';
     console.log('✅ Loader affiché');
 
     // Fonction pour cacher le loader
@@ -189,6 +190,7 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('⏱️ Début de masquage du loader...');
         if (loaderEl) {
             loaderEl.style.opacity = '0';
+            loaderEl.style.pointerEvents = 'none';
             setTimeout(() => {
                 loaderEl.style.display = 'none';
                 if (videoEl) {
@@ -360,64 +362,75 @@ if (mobileMenuBtn) {
 // POPUP WHATSAPP
 // ========================================
 // WhatsApp Popup - Version simplifiée et robuste
-document.addEventListener('DOMContentLoaded', function() {
+function initWhatsAppPopup() {
     const contactBtn = document.querySelector('.contact-btn');
     const whatsappPopup = document.getElementById('whatsapp-popup');
     const closePopup = document.querySelector('.close-popup');
 
+    console.log('Initialisation WhatsApp popup...');
     console.log('Contact button:', contactBtn);
     console.log('WhatsApp popup:', whatsappPopup);
+    console.log('Close button:', closePopup);
 
-    if (contactBtn && whatsappPopup) {
-        // Gestion du clic sur le bouton contact
-        contactBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            console.log('Bouton contact cliqué!');
-            whatsappPopup.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }, { passive: false });
-        
-        // Support tactile pour mobile
-        contactBtn.addEventListener('touchend', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            console.log('Touch sur bouton contact!');
-            whatsappPopup.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }, { passive: false });
-        
-        // Gestion du clic sur le bouton de fermeture
-        if (closePopup) {
-            closePopup.addEventListener('click', function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                console.log('Fermeture popup');
-                whatsappPopup.classList.remove('active');
-                document.body.style.overflow = '';
-            });
-            
-            closePopup.addEventListener('touchend', function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                console.log('Touch fermeture popup');
-                whatsappPopup.classList.remove('active');
-                document.body.style.overflow = '';
-            }, { passive: false });
-        }
-        
-        // Fermer en cliquant sur l'overlay
-        whatsappPopup.addEventListener('click', function(e) {
-            if (e.target === whatsappPopup) {
-                console.log('Clic sur overlay');
-                whatsappPopup.classList.remove('active');
-                document.body.style.overflow = '';
-            }
-        });
-    } else {
+    if (!contactBtn || !whatsappPopup) {
         console.error('Éléments WhatsApp non trouvés!');
+        return;
     }
-});
+
+    // Gestion du clic sur le bouton contact
+    contactBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        console.log('Bouton contact cliqué!');
+        whatsappPopup.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    });
+    
+    // Support tactile pour mobile
+    contactBtn.addEventListener('touchstart', function(e) {
+        e.preventDefault();
+        console.log('Touch sur bouton contact!');
+        whatsappPopup.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }, { passive: false });
+    
+    // Gestion du clic sur le bouton de fermeture
+    if (closePopup) {
+        closePopup.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            console.log('Fermeture popup');
+            whatsappPopup.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+        
+        closePopup.addEventListener('touchstart', function(e) {
+            e.preventDefault();
+            console.log('Touch fermeture popup');
+            whatsappPopup.classList.remove('active');
+            document.body.style.overflow = '';
+        }, { passive: false });
+    }
+    
+    // Fermer en cliquant sur l'overlay
+    whatsappPopup.addEventListener('click', function(e) {
+        if (e.target === whatsappPopup) {
+            console.log('Clic sur overlay');
+            whatsappPopup.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+    
+    console.log('WhatsApp popup initialisé avec succès!');
+}
+
+// Initialiser le popup WhatsApp quand le DOM est prêt
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initWhatsAppPopup);
+} else {
+    // Le DOM est déjà chargé, initialiser immédiatement
+    initWhatsAppPopup();
+}
 
 // ========================================
 // SMOOTH SCROLL

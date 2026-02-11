@@ -201,7 +201,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Détecter si on est sur mobile ou desktop et charger la bonne vidéo
             const isMobile = window.innerWidth <= 768;
-            const videoSource = isMobile ? 'loading1.mp4' : 'loading.mp4';
+            const videoSource = 'loading.mp4';
             console.log(`📱 Appareil détecté: ${isMobile ? 'Mobile' : 'Desktop'} - Vidéo: ${videoSource}`);
             
             // Définir la source de la vidéo
@@ -211,6 +211,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // S'assurer que le loader est visible
             loaderEl.style.display = 'flex';
             loaderEl.style.opacity = '1';
+            loaderEl.style.pointerEvents = 'all';
             console.log('✅ Loader affiché');
 
             // Fonction pour cacher le loader
@@ -218,6 +219,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.log('⏱️ Début de masquage du loader...');
                 if (loaderEl) {
                     loaderEl.style.opacity = '0';
+                    loaderEl.style.pointerEvents = 'none';
                     setTimeout(() => {
                         loaderEl.style.display = 'none';
                         if (videoEl) {
