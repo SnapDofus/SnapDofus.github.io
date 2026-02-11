@@ -199,6 +199,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
 
+            // Détecter si on est sur mobile ou desktop et charger la bonne vidéo
+            const isMobile = window.innerWidth <= 768;
+            const videoSource = isMobile ? 'loading1.mp4' : 'loading.mp4';
+            console.log(`📱 Appareil détecté: ${isMobile ? 'Mobile' : 'Desktop'} - Vidéo: ${videoSource}`);
+            
+            // Définir la source de la vidéo
+            videoEl.src = videoSource;
+            videoEl.load(); // Recharger la vidéo avec la nouvelle source
+
             // S'assurer que le loader est visible
             loaderEl.style.display = 'flex';
             loaderEl.style.opacity = '1';
