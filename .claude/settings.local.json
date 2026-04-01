@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Bash(npx vite:*)",
+      "Bash(mkdir -p public/assets)",
+      "Bash(mv about2.png home3.png IMG_0649_thumb.JPG logo.png photo1.png photo2.png photo3.png photo4.png portfolio1.jpg portfolio2.jpg portfolio3.jpg portfolio4.jpg portfolio5.jpg portfolio6.jpg portfolio7.png portfolio8.png portfolio9.jpg portfolio9.png portfolio10.jpg portfolio10.png loading.mp4 self_portrait.glb \"CV_Frederic_KOKOU ESSONE.pdf\" public/assets/)",
+      "Bash(cd:*)",
+      "Bash(find C:UsersSavDesktopprojSnapDofus.github.iomodel-animation -not -path *node_modules* -not -path *.git* -type d)",
+      "Bash(node -e \"const r3f = require\\(''./node_modules/@react-three/fiber/package.json''\\); console.log\\(''R3F peer react:'', r3f.peerDependencies?.react\\); console.log\\(''R3F version:'', r3f.version\\)\")",
+      "Bash(node -e \"const r3f = require\\(''./node_modules/@react-three/fiber/package.json''\\); console.log\\(''R3F version:'', r3f.version, ''| peer react:'', r3f.peerDependencies?.react\\)\")",
+      "Bash(grep -v \"^$\")",
+      "Bash(grep -E \"\\\\.\\(woff2|ttf|otf|png|jpg|gif\\)$\")",
+      "Bash(xargs grep:*)",
+      "Bash(node -e \"require\\(''''react-fast-marquee''''\\)\")"
+    ]
+  }
+}

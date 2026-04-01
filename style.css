@@ -205,10 +205,32 @@ body {
   100% { background-position: 200% 0; }
 }
 
-.robot-frame spline-viewer {
-  width: 100%;
-  height: 100%;
+.robot-frame canvas {
+  width: 100% !important;
+  height: 100% !important;
   background: transparent;
+}
+
+.robot-frame-rim {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  background-color: #00ff88;
+  box-shadow: inset 66px 35px 85px 0px rgba(0, 200, 100, 0.65);
+  filter: blur(60px);
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 20%) scale(1.4);
+  pointer-events: none;
+  z-index: 0;
+  animation: rimAppear 3s forwards 0.3s;
+  opacity: 0;
+}
+
+@keyframes rimAppear {
+  0%   { opacity: 0; transform: translate(-50%, 30%) scale(1.2); }
+  100% { opacity: 0.5; transform: translate(-50%, 20%) scale(1.4); }
 }
 
 /* Responsive Robot */
@@ -265,6 +287,7 @@ header {
   align-items: center;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  transition: transform 0.4s ease, background 0.3s ease, box-shadow 0.3s ease;
   transition: all 0.3s ease;
 }
 
@@ -1355,100 +1378,6 @@ h1 {
   background: rgba(0, 255, 136, 0.15);
 }
 
-/* Footer */
-footer {
-  background: #0a0a0a;
-  color: #f5f0e8;
-  padding: 60px 50px 30px;
-}
-
-.footer-content {
-  max-width: 1400px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
-  gap: 60px;
-  margin-bottom: 40px;
-}
-
-.footer-brand h3 {
-  font-size: 36px;
-  font-weight: 700;
-  margin-bottom: 20px;
-  letter-spacing: -1px;
-}
-
-.footer-brand p {
-  font-size: 14px;
-  line-height: 1.6;
-  opacity: 0.7;
-  max-width: 300px;
-}
-
-.footer-column h4 {
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  margin-bottom: 20px;
-  opacity: 0.5;
-}
-
-.footer-column ul {
-  list-style: none;
-}
-
-.footer-column li {
-  margin-bottom: 12px;
-}
-
-.footer-column a {
-  color: #f5f0e8;
-  text-decoration: none;
-  font-size: 14px;
-  opacity: 0.8;
-  transition: opacity 0.3s;
-}
-
-.footer-column a:hover {
-  opacity: 1;
-}
-
-.footer-bottom {
-  padding-top: 30px;
-  border-top: 1px solid rgba(245, 240, 232, 0.1);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.footer-bottom p {
-  font-size: 13px;
-  opacity: 0.6;
-}
-
-.social-links {
-  display: flex;
-  gap: 20px;
-}
-
-.social-links a {
-  width: 40px;
-  height: 40px;
-  border: 1px solid rgba(245, 240, 232, 0.2);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #f5f0e8;
-  text-decoration: none;
-  transition: all 0.3s;
-}
-
-.social-links a:hover {
-  background: #f5f0e8;
-  color: #0a0a0a;
-}
 
 /* Mobile Menu */
 .mobile-menu-toggle {
@@ -1512,9 +1441,6 @@ footer {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .footer-content {
-    grid-template-columns: repeat(2, 1fr);
-  }
 }
 
 @media (max-width: 768px) {
@@ -1647,18 +1573,7 @@ footer {
     transform: none;
   }
 
-  .footer-content {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
-
-  .footer-bottom {
-    flex-direction: column;
-    gap: 20px;
-    text-align: center;
-  }
-
-  .work-step::after {
+.work-step::after {
     display: none;
   }
 }
@@ -2321,3 +2236,169 @@ html {
   box-shadow: 0 0 15px rgba(0, 255, 136, 0.8);
 }
   
+/* ═══════════════════════════════════════════════
+   MON PROCESSUS
+═══════════════════════════════════════════════ */
+
+.wp-container {
+  width: 100%;
+}
+
+.wp-sticky {
+  display: flex;
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background-color: #ffffff;
+  overflow: hidden;
+}
+
+.wp-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2em;
+}
+
+.wp-services {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.wp-indicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 68px;
+  transform: translateY(0px);
+  background-color: #000;
+  z-index: -1;
+}
+
+.wp-service {
+  width: max-content;
+  height: 68px;
+}
+
+.wp-service p {
+  text-transform: uppercase;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 60px;
+  font-weight: 600;
+  color: #d5d5d5;
+  transition: color 0.3s;
+}
+
+.wp-service.wp-active p {
+  color: #fff;
+}
+
+.wp-img-wrapper {
+  position: relative;
+  width: 60%;
+  height: 250px;
+  overflow: hidden;
+  clip-path: polygon(50% 0%, 100% 0%, 100% 85%, 90% 100%, 50% 100%, 0 100%, 0 0);
+}
+
+.wp-img-strip {
+  width: 100%;
+  height: 2000px;
+  transform: translateY(0px);
+  will-change: transform;
+}
+
+.wp-img {
+  width: 100%;
+  height: 250px;
+}
+
+.wp-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.wp-copy {
+  width: 60%;
+}
+
+.wp-copy p {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 28px;
+}
+
+.wp-progress-bar {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 2.5px;
+  height: 60%;
+  background-color: #d5d5d5;
+  z-index: 10;
+}
+
+.wp-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  transform-origin: top;
+  transform: scaleY(0);
+  will-change: transform;
+}
+
+.wp-index {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  padding: 4px 2px 2px 2px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #000;
+  color: #fff;
+}
+
+.wp-index span {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 12px;
+  width: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wp-separator {
+  position: relative;
+  top: -1px;
+  width: 20px !important;
+  height: 2px;
+  background-color: #ff00ff !important;
+}
+
+@media (max-width: 1000px) {
+  .wp-sticky { flex-direction: column; }
+  .wp-col:nth-child(1) { padding-top: 25%; justify-content: flex-start; }
+  .wp-col:nth-child(2) { flex-direction: row; gap: 1.5rem; }
+  .wp-img-wrapper { width: 25%; }
+  .wp-service p { font-size: 26px; }
+  .wp-service, .wp-indicator { height: 34px; }
+  .wp-copy p { font-size: 14px; }
+  .wp-progress-bar { top: -15%; height: 50%; transform: rotate(-90deg); }
+  .wp-index { top: 5%; bottom: unset; }
+}
